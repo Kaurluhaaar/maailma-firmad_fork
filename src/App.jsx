@@ -7,27 +7,16 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='bg-earth bg-cover'>
+      <div className='justify-center flex content-center flex-col h-screen w-full'>
+        <div className='pb-{5.8rem} pb-28'>
+        <h1 className='text-7xl text-morning-blue font-nunito pb-9 w-max pl-32'>COMPANIES OF EARTH</h1>
+        <p className='text-text-blue text-xl font-nunito-italic italic w-max pl-80'>These are the top companies all over the world</p>
+        <div className='pl-96 pt-9'>
+        <button className='text-text-blue-dark font-nunito bg-button-blue shadow-[0_0px_5px_3px_rgba(88,86,181,0.3)] font-bold text-xs font py-3 px-24 rounded-2xl '>GET STARTED</button>
+        </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
