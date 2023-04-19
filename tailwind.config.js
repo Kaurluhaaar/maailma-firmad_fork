@@ -18,7 +18,7 @@ export default {
       'nunito-italic': ['nunito', 'italic'],
     },
     backgroundImage: {
-      'earth': "url('assets/earth.png')",
+      'earth': "url('public/images/earth.png')",
     }},
   },
   plugins: [],
