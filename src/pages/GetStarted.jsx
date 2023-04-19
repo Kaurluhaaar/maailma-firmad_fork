@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import { Routes, Route, Link } from 'react-router-dom';
-import './App.css'
-function App() {
-  const [count, setCount] = useState(0)
+import { Link } from 'react-router-dom';
+import './GetStarted.css'
 
+function App() {
   return (
     <div className='bg-earth bg-cover'>
       <div className='justify-center flex content-center flex-col h-screen w-full'>
