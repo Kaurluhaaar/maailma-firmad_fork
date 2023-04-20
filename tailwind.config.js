@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+
+      
+
       colors: {
       'morning-blue': '#5856B5',
       'space-blue': '#080913',

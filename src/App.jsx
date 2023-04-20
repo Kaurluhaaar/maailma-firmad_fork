@@ -1,4 +1,4 @@
-import {BrowserRouter ,Router, Routes, Route } from 'react-router-dom';
+import {BrowserRouter , Routes, Route } from 'react-router-dom';
 import GetStarted from './pages/GetStarted';
 import Planet from './pages/Planet';
 
