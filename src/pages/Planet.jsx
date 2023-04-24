@@ -8,6 +8,13 @@ import Globe from 'react-globe.gl';
 
 const World = () => {
     const [places, setPlaces] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState(null);
+
+    const handleLabelClick = (label) => {
+      const uniqueId = label.properties.name.replace().toLowerCase();
+      /* setSelectedLocation(uniqueId); */
+      console.log(uniqueId);
+    };
 
     useEffect(() => {
         // load data
@@ -17,39 +24,22 @@ const World = () => {
 
     return <Globe
         globeImageUrl="/earthcolormap.png"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         labelsData={places}
         labelLat={d => d.properties.latitude}
         labelLng={d => d.properties.longitude}
         labelText={d => d.properties.name}
-        labelSize={d => Math.sqrt(d.properties.pop_max) * 4e-4}
-        labelDotRadius={d => Math.sqrt(d.properties.pop_max) * 4e-4}
+        labelSize={d => 2}
+        labelDotRadius={d => 1}
         labelColor={() => 'rgba(255, 165, 0, 0.75)'}
-        labelResolution={2}
+        labelResolution={0}
+        onLabelClick={handleLabelClick}
     />;
 };
-
-
-function Scene() {
-    const fbx = useLoader(FBXLoader, 'models/earth.fbx')
-
-    return (
-        <>
-        </>
-    )
-}
 
 function Planet() {
     return (
         <>
             <World />
-            {/*  <Canvas style={{ width: "100%", height: "100vh" }} >
-            <PerspectiveCamera makeDefault fov={120} position={[0 , 70 , 10]} far={10000}/>
-            <pointLight position={[0, 5, 0]} />
-            <Suspense fallback={null}>
-            </Suspense>
-            <OrbitControls />
-        </Canvas> */}
         </>
     )
 }
