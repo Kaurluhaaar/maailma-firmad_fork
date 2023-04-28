@@ -5,6 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+
+    screens: {
+      'sm': '640px',
+
+      'tiny': '300px',
+
+      'smol': '1236px',
+
+      'mid': '1570px',
+
+      'big': '1728px',
+    },
     extend: {
 
 
