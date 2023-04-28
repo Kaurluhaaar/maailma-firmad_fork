@@ -1,9 +1,10 @@
 function Company() {
     return (
         <>
-
+        <div>
+        </div>
         </>
     )
   }
 
-  export default App
+  export default Company

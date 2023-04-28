@@ -1,44 +1,42 @@
-import { Suspense } from 'react'
-import { Canvas, useLoader } from '@react-three/fiber'
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
-import { PerspectiveCamera } from '@react-three/drei'
-import { OrbitControls, Plane } from '@react-three/drei'
 import React, { useState, useEffect } from 'react';
+import Company from '../components/Company';
 import Globe from 'react-globe.gl';
 
 const World = () => {
     const [places, setPlaces] = useState([]);
-    const [selectedLocation, setSelectedLocation] = useState(null);
+    const [selectedLabel, setSelectedLabel] = useState(null);
 
-    const handleLabelClick = (label) => {
-      const uniqueId = label.properties.name.replace().toLowerCase();
-      /* setSelectedLocation(uniqueId); */
-      console.log(uniqueId);
+    console.log(places);
+
+/*     const handleLabelClick = (industry) => {
+      const uniqueId = JSON.stringify(industry.properties.name);
+      setSelectedLabel(uniqueId);
     };
+    Company(selectedLabel) */
 
     useEffect(() => {
         // load data
-        fetch('/ne_110m_populated_places_simple.geojson').then(res => res.json())
-            .then(({ features }) => setPlaces(features));
+        fetch('/companies.json').then(res => res.json())
+            .then((json) => setPlaces(json));
     }, []);
 
     return <Globe
         globeImageUrl="/earthcolormap.png"
         labelsData={places}
-        labelLat={d => d.properties.latitude}
-        labelLng={d => d.properties.longitude}
-        labelText={d => d.properties.name}
+        labelLat={d => d.location.lat}
+        labelLng={d => d.location.lng}
+        labelText={d => d.name}
         labelSize={d => 2}
         labelDotRadius={d => 1}
-        labelColor={() => 'rgba(255, 165, 0, 0.75)'}
+        labelColor={() => 'rgba(255, 165, 0, 1)'}
         labelResolution={0}
-        onLabelClick={handleLabelClick}
     />;
 };
 
 function Planet() {
     return (
         <>
+            {/* <Company/> */}
             <World />
         </>
     )

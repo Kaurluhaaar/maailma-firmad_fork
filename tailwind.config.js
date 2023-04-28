@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
 
-      
+
 
       colors: {
       'morning-blue': '#5856B5',
@@ -21,7 +21,7 @@ export default {
       'nunito-italic': ['nunito', 'italic'],
     },
     backgroundImage: {
-      'earth': "url('public/images/earth.png')",
+      'earth': "url('/images/earth.png')",
     }},
   },
   plugins: [],
