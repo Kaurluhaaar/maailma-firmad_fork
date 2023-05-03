@@ -19,7 +19,10 @@ export default {
     },
     extend: {
 
-
+      width: {
+        '128': '30rem',
+        '200': '600px',
+      },
 
       colors: {
       'morning-blue': '#5856B5',
