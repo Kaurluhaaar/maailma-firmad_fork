@@ -1,9 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&display=swap');
 @tailwind base;
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary) var(--primary);
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--primary);
+    border-radius: 5px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 14px;
+    border: 3px solid var(--primary);
+  }
+
 @tailwind components;
 @tailwind utilities;
 @layer base {
+    :root {
+        --primary: #101226;
+        --secondary: #5856B5;
+      }
     body {
         background-color: #080913;
         width: 100%;
