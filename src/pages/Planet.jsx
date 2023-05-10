@@ -38,8 +38,10 @@ const World = () => {
 
     const gData = places.map((company, index) => ({
         name: company.name,
+        domain: company.domain,
+        industryMain: company.industryMain,
         founded: company.yearFounded,
-        workers: company.totalEmployees,
+        workers: company.totalEmployeesExact,
         description: company.description,
         lat: company.city.latitude,
         lng: company.city.longitude,
