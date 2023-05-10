@@ -1,4 +1,4 @@
-import{ Link }from "react-router-dom"
+
 
 function Company({ company, onClick }) {
     const handleClick = () => {
@@ -12,7 +12,7 @@ function Company({ company, onClick }) {
                 <a href={`https://${company.domain}`}>
                 <div className="text-morning-blue font-nunito text-5xl font-light pb-8 pl-8">{company.name}</div>
                 </a>
-                
+
                 <div className="flex space-x-6 pl-8 pb-5">
                     <div className="w-max font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">Founded <span className="pl-4 text-text-blue">{company.founded}</span></div>
                     <div className="w-max font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">Workers <span className="pl-4 text-text-blue">{company.workers}</span></div>
