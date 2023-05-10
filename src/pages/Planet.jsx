@@ -11,7 +11,8 @@ const World = () => {
     const handleLabelClick = (html, company) => {
         // const path = html.explicitOriginalTarget
         // const pathElements = path.querySelectorAll('path');
-        setSelectedCompany(html.target, company);
+        setwidth(800);
+        setSelectedCompany(company);
         html.target.setAttribute('fill', '#00FF00');
        console.log(html.target);
     };
