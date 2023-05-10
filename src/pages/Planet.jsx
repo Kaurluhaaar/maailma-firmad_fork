@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Company from '../components/Company';
-import Marker from '../components/Marker';
 import Globe from 'react-globe.gl';
 import { API } from "../../config/API";
 
@@ -8,11 +7,13 @@ const World = () => {
     const [places, setPlaces] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [width, setwidth] = useState(window.innerWidth);
-    const [showMessage, setShowMessage] = useState(false);
 
-    const handleLabelClick = (company) => {
-        setwidth(800);
-        setSelectedCompany(company);
+    const handleLabelClick = (html, company) => {
+        // const path = html.explicitOriginalTarget
+        // const pathElements = path.querySelectorAll('path');
+        setSelectedCompany(html.target, company);
+        html.target.setAttribute('fill', '#00FF00');
+       console.log(html.target);
     };
 
     console.log(places);
@@ -30,14 +31,15 @@ const World = () => {
     const markerSvg = `
     <div>
     <svg viewBox="-4 0 36 36">
-    <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
-    <circle fill="black" cx="14" cy="14" r="7"></circle>
+    <path fill="#5856B5" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
+    <circle fill="#C6C5E6" cx="14" cy="14" r="7"></circle>
     </svg>
     `;
 
 
     const gData = places.map((company, index) => ({
         name: company.name,
+        logo: company.logo,
         domain: company.domain,
         industryMain: company.industryMain,
         founded: company.yearFounded,
@@ -46,7 +48,6 @@ const World = () => {
         lat: company.city.latitude,
         lng: company.city.longitude,
         size: 20,
-        color: 'red'
     }));
 
     return <>
@@ -60,12 +61,10 @@ const World = () => {
                 htmlElement={d => {
                     const el = document.createElement('div');
                     el.innerHTML = markerSvg;
-                    el.style.color = d.color;
                     el.style.width = `${d.size}px`;
-
                     el.style['pointer-events'] = 'auto';
                     el.style.cursor = 'pointer';
-                    el.onclick = () => handleLabelClick(d);
+                    el.onclick = (e) => handleLabelClick(e, d);
                     el.addEventListener('mouseover', () => {
                         // Create a tooltip element
                         const tooltip = document.createElement('div');
@@ -73,8 +72,9 @@ const World = () => {
                         tooltip.style.position = 'absolute';
                         tooltip.style.top = `${event.clientY}px`;
                         tooltip.style.left = `${event.clientX}px`;
-                        tooltip.style.backgroundColor = 'white';
-                        tooltip.style.padding = '5px';
+                        tooltip.style.backgroundColor = '#101226';
+                        tooltip.style.color = '#5856B5';
+                        tooltip.style.padding = '10px';
                         tooltip.style.border = '1px solid black';
                         tooltip.style.borderRadius = '5px';
                         tooltip.style.zIndex = '100';
@@ -86,6 +86,7 @@ const World = () => {
                         el.addEventListener('mouseout', () => {
                             tooltip.remove();
                         });
+                        // Remove the tooltip when the marker element is clicked
                         el.addEventListener('click', () => {
                             tooltip.remove();
                         });
