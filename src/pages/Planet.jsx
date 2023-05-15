@@ -3,22 +3,15 @@ import Company from '../components/Company';
 import Globe from 'react-globe.gl';
 import { API } from "../../config/API";
 
-const World = () => {
+export default function Planet() {
     const [places, setPlaces] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [width, setwidth] = useState(window.innerWidth);
 
     const handleLabelClick = (html, company) => {
-        // const path = html.explicitOriginalTarget
-        // const pathElements = path.querySelectorAll('path');
         setwidth(800);
-        setSelectedCompany(company);
-        html.target.setAttribute('fill', '#00FF00');
-       console.log(html.target);
+        setSelectedCompany({ company: company, html: html });
     };
-
-    console.log(places);
-
     useEffect(() => {
         try {
             API.get("/companies?size=50").then((response) => {
@@ -29,7 +22,9 @@ const World = () => {
         }
     }, []);
 
-    const markerSvg = `
+    console.log(places);
+
+    let markerSvg = `
     <div>
     <svg viewBox="-4 0 36 36">
     <path fill="#5856B5" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
@@ -96,17 +91,7 @@ const World = () => {
                     return el;
                 }}
             />
-            {selectedCompany && <Company company={selectedCompany} />}
+            {selectedCompany && <Company html={selectedCompany.html} company={selectedCompany.company} />}
         </div>
     </>
 };
-
-function Planet() {
-    return (
-        <>
-            <World />
-        </>
-    )
-}
-
-export default Planet
