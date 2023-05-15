@@ -4,8 +4,8 @@ function Company({ html ,company }) {
 
     return (
         <>
-        <div className="w-min p-10 h-screen overflow-hidden">
-            <div className="pl-5 w-200">
+        <div className="w-fit p-10 h-screen overflow-hidden">
+            <div className="pl-5 ">
                 <a href={`https://${company.domain}`}>
                     <div className="text-morning-blue font-nunito text-5xl font-light pb-8 pl-8 transition duration-300 ease-in-out hover:scale-110">{company.name}</div>
                 </a>
