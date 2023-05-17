@@ -30,6 +30,7 @@ export default {
       'text-blue': '#C6C5E6',
       'button-blue':'#101226',
       'text-blue-dark':'#5856B5',
+      'blue-box':'#1E2145',
     },
     fontFamily: {
       'nunito': ['nunito', 'sans-serif'],

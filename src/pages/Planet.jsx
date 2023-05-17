@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Company from '../components/Company';
 import Globe from 'react-globe.gl';
-import { API } from "../../config/API";
+import { API } from "../../config/CompanyAPI";
 
 export default function Planet() {
     const [places, setPlaces] = useState([]);
@@ -37,6 +37,8 @@ export default function Planet() {
         name: company.name,
         logo: company.logo,
         domain: company.domain,
+        city: company.city,
+        revenue: company.revenue,
         industryMain: company.industryMain,
         founded: company.yearFounded,
         workers: company.totalEmployeesExact,
