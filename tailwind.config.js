@@ -22,6 +22,8 @@ export default {
       width: {
         '128': '30rem',
         '200': '700px',
+        'custom1': '2px',
+        'custom2':'250px'
       },
 
       colors: {
