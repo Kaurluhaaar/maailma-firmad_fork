@@ -4,7 +4,7 @@ function App() {
   return (
     <div className='bg-earth bg-cover'>
       <div className='justify-center flex content-center flex-col h-screen w-full'>
-        <div className='pb-[5.8rem] pb-28 text-center w-1/2 box-border m-10'>
+        <div className='pb-28 text-center w-1/2 box-border m-10'>
             <h1 className='text-7xl text-morning-blue font-nunito pb-9 max-mid:text-5xl break-normal'>COMPANIES OF EARTH</h1>
             <p className='text-text-blue text-xl font-nunito-italic italic max-big:text-lg max-mid:text-base break-normal'>These are the top companies all over the world</p>
             <div className=' pt-9'>
