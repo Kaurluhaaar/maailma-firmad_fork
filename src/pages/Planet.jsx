@@ -7,11 +7,20 @@ export default function Planet() {
     const [places, setPlaces] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [width, setwidth] = useState(window.innerWidth);
+    const [selectedMarkerId, setSelectedMarkerId] = useState(null)
 
     const handleLabelClick = (html, company) => {
         setwidth(800);
         setSelectedCompany({ company: company, html: html });
+        setSelectedMarkerId(company.id);
     };
+
+      useEffect(() => {
+        console.log(selectedMarkerId);
+      }, []);
+
+    console.log(places);
+
     useEffect(() => {
         try {
             API.get("/companies?size=50").then((response) => {
@@ -22,18 +31,22 @@ export default function Planet() {
         }
     }, []);
 
-    console.log(places);
-
     let markerSvg = `
     <div>
-    <svg viewBox="-4 0 36 36">
-    <path fill="#5856B5" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
-    <circle fill="#C6C5E6" cx="14" cy="14" r="7"></circle>
-    </svg>
+        <svg viewBox="-4 0 36 36">
+        <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
+        <circle fill="#C6C5E6" cx="14" cy="14" r="7"></circle>
+        </svg>
+    </div>
     `;
 
+    //country
+    //city
+    //social media
 
     const gData = places.map((company, index) => ({
+        id: company.id,
+        //page content data
         name: company.name,
         logo: company.logo,
         domain: company.domain,
@@ -43,9 +56,18 @@ export default function Planet() {
         founded: company.yearFounded,
         workers: company.totalEmployeesExact,
         description: company.description,
+        facebook: company.socialNetworks.facebook,
+        linkedin: company.socialNetworks.linkedin,
+        instagram: company.socialNetworks.instagram,
+        //loaction used for marker location
         lat: company.city.latitude,
         lng: company.city.longitude,
-        size: 20,
+        //styles
+        color: '#5856B5', // default marker color
+        color2: '#080913', //active marker color
+        size: 20, //default marker size
+        //activation for marker
+        isSelected: selectedMarkerId === company.id, // Check if the company is selected
     }));
 
     return <>
@@ -59,10 +81,12 @@ export default function Planet() {
                 htmlElement={d => {
                     const el = document.createElement('div');
                     el.innerHTML = markerSvg;
-                    el.style.width = `${d.size}px`;
+                    el.style.width = d.isSelected ? `30px` : `${d.size}px`;
                     el.style['pointer-events'] = 'auto';
                     el.style.cursor = 'pointer';
-                    el.onclick = (e) => handleLabelClick(e, d);
+                    el.style.color = d.isSelected ? d.color2 : d.color;
+                    // kasuta el et muuta colorit style.coloriga
+                    el.onclick = (e) => handleLabelClick(el, d,);
                     el.addEventListener('mouseover', () => {
                         // Create a tooltip element
                         const tooltip = document.createElement('div');
@@ -88,9 +112,8 @@ export default function Planet() {
                         el.addEventListener('click', () => {
                             tooltip.remove();
                         });
-
                     });
-                    return el;
+                        return el;
                 }}
             />
             {selectedCompany && <Company html={selectedCompany.html} company={selectedCompany.company} />}
