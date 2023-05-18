@@ -6,22 +6,11 @@ import { API } from "../../config/CompanyAPI";
 export default function Planet() {
     const [places, setPlaces] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
-    const [width, setwidth] = useState(window.innerWidth);
     const [selectedMarkerId, setSelectedMarkerId] = useState(null)
+    const [isCompanyVisible, setCompanyVisible] = useState(false);
 
-    const handleLabelClick = (html, company) => {
-        setSelectedCompany({ company: company, html: html });
-        setSelectedMarkerId(company.id);
-        // Scroll to the Company component
-        const companyElement = document.getElementById('company-component');
-        companyElement.scrollIntoView({ behavior: 'smooth' });
-    };
-
-      useEffect(() => {
-        console.log(selectedMarkerId);
-      }, []);
-
-    console.log(places);
+    const [initialLat, setInitialLat] = useState(0);
+    const [initialLng, setInitialLng] = useState(0);
 
     useEffect(() => {
         try {
@@ -43,9 +32,6 @@ export default function Planet() {
     `;
 
     //country
-    //city
-    //social media
-
     const gData = places.map((company, index) => ({
         id: company.id,
         //page content data
@@ -72,57 +58,70 @@ export default function Planet() {
         isSelected: selectedMarkerId === company.id, // Check if the company is selected
     }));
 
+    const handleLabelClick = (html, company) => {
+        setSelectedCompany({ company: company, html: html });
+        setSelectedMarkerId(company.id);
+        setCompanyVisible(true);
+        // Scroll to the Company component
+        const companyElement = document.getElementById('company-component');
+        companyElement.scrollIntoView({ behavior: 'smooth' });
+         // Pan the view to the marker
+        const markerElement = e.target.parentElement;
+        const globeElement = globeRef.current;
+        globeElement.panTo(markerElement.dataset.lat, markerElement.dataset.lng, 0.8);
+    };
     return <>
         <div className="h-screen w-full">
-            <Globe
-                width={width}
-                animateIn="false"
-                backgroundColor="#080913"
-                globeImageUrl="/earthcolormap.png"
-                htmlElementsData={gData}
-                htmlElement={d => {
-                    const el = document.createElement('div');
-                    el.innerHTML = markerSvg;
-                    el.style.width = d.isSelected ? `30px` : `${d.size}px`;
-                    el.style['pointer-events'] = 'auto';
-                    el.style.cursor = 'pointer';
-                    el.style.color = d.isSelected ? d.color2 : d.color;
-                    // kasuta el et muuta colorit style.coloriga
-                    el.onclick = (e) => handleLabelClick(el, d,);
-                    el.addEventListener('mouseover', () => {
-                        // Create a tooltip element
-                        const tooltip = document.createElement('div');
-                        tooltip.innerText = d.name;
-                        tooltip.style.position = 'absolute';
-                        tooltip.style.top = `${event.clientY}px`;
-                        tooltip.style.left = `${event.clientX}px`;
-                        tooltip.style.backgroundColor = '#101226';
-                        tooltip.style.color = '#5856B5';
-                        tooltip.style.padding = '10px';
-                        tooltip.style.border = '1px solid black';
-                        tooltip.style.borderRadius = '5px';
-                        tooltip.style.zIndex = '100';
+            <div>
+                <Globe
+                    animateIn="true"
+                    backgroundColor="#080913"
+                    globeImageUrl="/earthcolormap.png"
+                    htmlElementsData={gData}
+                    htmlElement={d => {
+                        const el = document.createElement('div');
+                        el.innerHTML = markerSvg;
+                        el.style.width = d.isSelected ? `30px` : `${d.size}px`;
+                        el.style['pointer-events'] = 'auto';
+                        el.style.cursor = 'pointer';
+                        el.style.color = d.isSelected ? d.color2 : d.color;
+                        // kasuta el et muuta colorit style.coloriga
+                        el.onclick = (e) => handleLabelClick(el, d,);
+                        el.addEventListener('mouseover', () => {
+                            // Create a tooltip element
+                            const tooltip = document.createElement('div');
+                            tooltip.innerText = d.name;
+                            tooltip.style.position = 'absolute';
+                            tooltip.style.top = `${event.clientY}px`;
+                            tooltip.style.left = `${event.clientX}px`;
+                            tooltip.style.backgroundColor = '#101226';
+                            tooltip.style.color = '#5856B5';
+                            tooltip.style.padding = '10px';
+                            tooltip.style.border = '1px solid black';
+                            tooltip.style.borderRadius = '5px';
+                            tooltip.style.zIndex = '100';
 
-                        // Add the tooltip to the document
-                        document.body.appendChild(tooltip);
+                            // Add the tooltip to the document
+                            document.body.appendChild(tooltip);
 
-                        // Remove the tooltip when the mouse moves out of the marker element
-                        el.addEventListener('mouseout', () => {
-                            tooltip.remove();
+                            // Remove the tooltip when the mouse moves out of the marker element
+                            el.addEventListener('mouseout', () => {
+                                tooltip.remove();
+                            });
+                            // Remove the tooltip when the marker element is clicked
+                            el.addEventListener('click', () => {
+                                tooltip.remove();
+                            });
                         });
-                        // Remove the tooltip when the marker element is clicked
-                        el.addEventListener('click', () => {
-                            tooltip.remove();
-                        });
-                    });
-                        return el;
-                }}
-            />
-            {selectedCompany && (
-                <div id="company-component">
-                    <Company html={selectedCompany.html} company={selectedCompany.company} />
-                </div>
-            )}
+                            return el;
+                    }}
+                />
+                {isCompanyVisible && (
+                    <div id="company-component">
+                        <Company html={selectedCompany.html} company={selectedCompany.company} />
+                    </div>
+                )}
+            </div>
         </div>
     </>
 };
