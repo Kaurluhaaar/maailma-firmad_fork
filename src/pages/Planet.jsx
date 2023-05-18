@@ -9,9 +9,6 @@ export default function Planet() {
     const [selectedMarkerId, setSelectedMarkerId] = useState(null)
     const [isCompanyVisible, setCompanyVisible] = useState(false);
 
-    const [initialLat, setInitialLat] = useState(0);
-    const [initialLng, setInitialLng] = useState(0);
-
     useEffect(() => {
         try {
             API.get("/companies?size=50").then((response) => {
