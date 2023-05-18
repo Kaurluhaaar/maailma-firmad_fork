@@ -13,6 +13,9 @@ export default function Planet() {
         setwidth(800);
         setSelectedCompany({ company: company, html: html });
         setSelectedMarkerId(company.id);
+        // Scroll to the Company component
+        const companyElement = document.getElementById('company-component');
+        companyElement.scrollIntoView({ behavior: 'smooth' });
     };
 
       useEffect(() => {
@@ -116,7 +119,11 @@ export default function Planet() {
                         return el;
                 }}
             />
-            {selectedCompany && <Company html={selectedCompany.html} company={selectedCompany.company} />}
+            {selectedCompany && (
+                <div id="company-component">
+                    <Company html={selectedCompany.html} company={selectedCompany.company} />
+                </div>
+            )}
         </div>
     </>
 };
