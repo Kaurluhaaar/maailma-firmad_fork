@@ -10,7 +10,6 @@ export default function Planet() {
     const [selectedMarkerId, setSelectedMarkerId] = useState(null)
 
     const handleLabelClick = (html, company) => {
-        setwidth(800);
         setSelectedCompany({ company: company, html: html });
         setSelectedMarkerId(company.id);
         // Scroll to the Company component
@@ -74,7 +73,7 @@ export default function Planet() {
     }));
 
     return <>
-        <div className="flex h-screen w-full">
+        <div className="h-screen w-full">
             <Globe
                 width={width}
                 animateIn="false"
