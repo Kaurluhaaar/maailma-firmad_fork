@@ -16,7 +16,7 @@ function Company({ html, company}) {
 
     return (
         <>
-        <div className="w-fit p-10 h-screen overflow-hidden">
+        <div className="w-fit p-10 h-screen overflow-hidden snap-center">
             <div className=" min-w-600">
                 <div className='flex justify-between'>
                 <a href={`https://${company.domain}`} className="flex">
