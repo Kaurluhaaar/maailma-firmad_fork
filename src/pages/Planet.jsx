@@ -50,6 +50,7 @@ export default function Planet() {
         logo: company.logo,
         domain: company.domain,
         city: company.city,
+        country: company.country,
         revenue: company.revenue,
         industryMain: company.industryMain,
         founded: company.yearFounded,
