@@ -23,7 +23,8 @@ export default {
         '128': '30rem',
         '200': '700px',
         'custom1': '2px',
-        'custom2':'250px'
+        'custom2':'250px',
+        '300':'1500px',
       },
 
       colors: {
