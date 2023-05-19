@@ -84,7 +84,6 @@ export default function Planet() {
                         el.style.cursor = 'pointer';
                         el.style.color = d.isSelected ? d.color2 : d.color;
                         // kasuta el et muuta colorit style.coloriga
-                        el.onclick = (e) => handleLabelClick(el, d,);
                         el.addEventListener('mouseover', () => {
                             // Create a tooltip element
                             const tooltip = document.createElement('div');
@@ -111,6 +110,7 @@ export default function Planet() {
                                 tooltip.remove();
                             });
                         });
+                        el.onclick = (e) => handleLabelClick(el, d,);
                             return el;
                     }}
                 />
