@@ -62,10 +62,6 @@ export default function Planet() {
         // Scroll to the Company component
         const companyElement = document.getElementById('company-component');
         companyElement.scrollIntoView({ behavior: 'smooth' });
-         // Pan the view to the marker
-        const markerElement = e.target.parentElement;
-        const globeElement = globeRef.current;
-        globeElement.panTo(markerElement.dataset.lat, markerElement.dataset.lng, 0.8);
     };
     return <>
         <div className="h-screen w-full">
