@@ -11,7 +11,7 @@ function Company({ html, company }) {
     return (
         <>
             <div className="w-fit p-10 h-screen overflow-hidden">
-             <div className="text-stone-50">
+                <div className="text-stone-50">
                     <button onClick={scrollToTop}>Scroll to Top</button>
                 </div>
                 <div className=" min-w-600">
