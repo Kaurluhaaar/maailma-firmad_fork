@@ -17,7 +17,7 @@ function Company({ html, company }) {
         <div className="w-fit mx-10 h-screen overflow-hidden snap-center box-border">\
 
             <div className=" min-w-600">
-                <div className='flex content-center items-center'>
+                <div className='flex items-end'>
                     <a href={`https://${company.domain}`} className="flex">
                         <img src={company.logo} alt="logo" className="w-12 h-12 rounded" />
                         <div className="text-morning-blue font-nunito text-5xl font-light pl-8 pr-10 transition duration-300 ease-in-out hover:scale-110 ">{company.name}</div>
