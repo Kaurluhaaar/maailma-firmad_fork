@@ -55,7 +55,6 @@ export default function Planet() {
         //activation for marker
         isSelected: selectedMarkerId === company.id, // Check if the company is selected
     }));
-
     const handleLabelClick = (html, company) => {
         setSelectedCompany({ company: company, html: html });
         setSelectedMarkerId(company.id);
