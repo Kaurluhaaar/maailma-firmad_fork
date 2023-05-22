@@ -25,6 +25,9 @@ export default {
         'custom1': '2px',
         'custom2':'250px',
         '300':'1500px',
+        'imageheight':'370px',
+        'imagewidth':'570px',
+
       },
 
       colors: {

@@ -10,10 +10,8 @@ function Company({ html, company }) {
 
     return (
         <>
-        <div className="w-fit p-10 h-screen">\
-                <div className="text-stone-50">
-                    <button onClick={scrollToTop}>Scroll to Top</button>
-                </div>
+        <div className="w-fit mx-10 h-screen overflow-hidden snap-center box-border">\
+
             <div className=" min-w-600">
                 <div className='flex'>
                     <a href={`https://${company.domain}`} className="flex">
@@ -28,19 +26,20 @@ function Company({ html, company }) {
                 </div>
                 <div className='h-[2px] mb-8 w-300 -rotate-180 bg-gradient-to-r from-space-blue via-blue-900 to-blue-400'></div>
                 <div className='flex flex-col justify-center content-center '>
+                    <div className='flex justify-between'>
                         <div className=" flex gap-4 p-3 rounded-lg  w-max ml-8">
                             <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-custom2">Industry<span className="pl-4 text-text-blue">{company.industryMain}</span></div>
                             <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-custom2">Founded <span className="pl-4 text-text-blue">{company.founded}</span></div>
-
                         </div>
-                        <div className="flex ml-8 justify-end w-max ">
+                        <div className="flex ml-8 mt-3 mr-48">
                                                 <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">City <span className="pl-4 text-text-blue">{company.city.name}</span></div>
                                                 <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">Country <span className="pl-4 text-text-blue">{company.country.name}</span></div>
                         </div>
+                    </div>
                     <div className="flex my-6">
                         <div className="text-text-blue h-80 mt-5 px-8 mb-16 overflow-y-auto w-1/2">{company.description}</div>
-                        <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue mr-12"></div>
-                        <GoogleMaps />
+                        <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue"></div>
+                        <img className=' w-imagewidth h-imageheight ml-28' src="src/assets/earth.png" alt="image" />
                     </div>
                     <div className="flex gap-3 pr-8 w-1/2 justify-end">
                         <a href={`https://${company.facebook}`}>
@@ -55,6 +54,9 @@ function Company({ html, company }) {
                     </div>
                 </div>
             </div>
+            <div className="text-stone-50 justify-end flex">
+                    <button className="bg-blue-box hover:bg-button-blue text-white font-bold py-2 px-4 rounded-full" onClick={scrollToTop}>Scroll to Top</button>
+                </div>
         </div>
         </>
     )
