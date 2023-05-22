@@ -1,4 +1,4 @@
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import GoogleMaps from './GoogleMaps';
 
 function Company({ html, company }) {
     const scrollToTop = () => {
@@ -10,7 +10,7 @@ function Company({ html, company }) {
 
     return (
         <>
-        <div className="w-fit p-10 h-screen overflow-hidden snap-center">\
+        <div className="w-fit p-10 h-screen">\
                 <div className="text-stone-50">
                     <button onClick={scrollToTop}>Scroll to Top</button>
                 </div>
@@ -38,9 +38,9 @@ function Company({ html, company }) {
                                                 <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">Country <span className="pl-4 text-text-blue">{company.country.name}</span></div>
                         </div>
                     <div className="flex my-6">
-
                         <div className="text-text-blue h-80 mt-5 px-8 mb-16 overflow-y-auto w-1/2">{company.description}</div>
-                        <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue"></div>
+                        <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue mr-12"></div>
+                        <GoogleMaps />
                     </div>
                     <div className="flex gap-3 pr-8 w-1/2 justify-end">
                         <a href={`https://${company.facebook}`}>
