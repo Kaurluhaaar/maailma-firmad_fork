@@ -38,8 +38,8 @@ function Company({ html, company }) {
                     </div>
                     <div className="flex my-6">
                         <div className="text-text-blue h-80 mt-5 px-8 mb-16 overflow-y-auto w-1/2">{company.description}</div>
-                        <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue"></div>
-                        <img className=' w-imagewidth h-imageheight ml-28' src="src/assets/earth.png" alt="image" />
+                        <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue mr-12"></div>
+                        <GoogleMaps />
                     </div>
                     <div className="flex gap-3 pr-8 w-1/2 justify-end">
                         <a href={`https://${company.facebook}`}>
