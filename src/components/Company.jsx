@@ -7,6 +7,10 @@ function Company({ html, company }) {
             behavior: 'smooth'
         });
     };
+    const location = {
+        lat: Number(company.lat),
+        lng: Number(company.lng)
+      };
 
     return (
         <>
@@ -39,7 +43,7 @@ function Company({ html, company }) {
                     <div className="flex my-6">
                         <div className="text-text-blue h-80 mt-5 px-8 mb-16 overflow-y-auto w-1/2">{company.description}</div>
                         <div className="w-custom1 h-100 bg-gradient-to-b from-morning-blue to-space-blue mr-12"></div>
-                        <GoogleMaps />
+                        <GoogleMaps latitude={location.lat} longitude={location.lng} />
                     </div>
                     <div className="flex gap-3 pr-8 w-1/2 justify-end">
                         <a href={`https://${company.facebook}`}>
