@@ -31,7 +31,7 @@ function Company({ html, company }) {
                             <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-max">Industry<span className="pl-4 text-text-blue">{company.industryMain}</span></div>
                             <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-max">Founded <span className="pl-4 text-text-blue">{company.founded}</span></div>
                         </div>
-                        <div className="flex ml-8 mt-3 mr-48">
+                        <div className="flex ml-8 mt-3 mr-64">
                                                 <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">City <span className="pl-4 text-text-blue">{company.city.name}</span></div>
                                                 <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">Country <span className="pl-4 text-text-blue">{company.country.name}</span></div>
                         </div>
