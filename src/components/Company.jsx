@@ -13,23 +13,23 @@ function Company({ html, company }) {
         <div className="w-fit mx-10 h-screen overflow-hidden snap-center box-border">\
 
             <div className=" min-w-600">
-                <div className='flex'>
+                <div className='flex content-center items-center'>
                     <a href={`https://${company.domain}`} className="flex">
                         <img src={company.logo} alt="logo" className="w-12 h-12 rounded" />
-                        <div className="text-morning-blue font-nunito text-5xl font-light pb-5 pl-8 pr-10 transition duration-300 ease-in-out hover:scale-110 ">{company.name}</div>
+                        <div className="text-morning-blue font-nunito text-5xl font-light pl-8 pr-10 transition duration-300 ease-in-out hover:scale-110 ">{company.name}</div>
                     </a>
-                    <div className=' flex h-max mt-2'>
-                        <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">revenue <span className="pl-4 text-text-blue">{company.revenue}</span></div>
-                        <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">Workers <span className="pl-4 text-text-blue">{company.workers}</span></div>
+                    <div className=' flex h-max items-center'>
+                        <div className=" font-nunito font-normal text-morning-blue flex mr-5 rounded-lg w-max h-max">revenue <span className="pl-4 text-text-blue">{company.revenue}</span></div>
+                        <div className=" font-nunito font-normal text-morning-blue flex rounded-lg w-max h-max">Workers <span className="pl-4 text-text-blue">{company.workers}</span></div>
                     </div>
 
                 </div>
-                <div className='h-[2px] mb-8 w-300 -rotate-180 bg-gradient-to-r from-space-blue via-blue-900 to-blue-400'></div>
+                <div className='h-[2px] mb-5 mt-5 w-300 -rotate-180 bg-gradient-to-r from-space-blue via-text-blue-dark to-morning-blue'></div>
                 <div className='flex flex-col justify-center content-center '>
                     <div className='flex justify-between'>
                         <div className=" flex gap-4 p-3 rounded-lg  w-max ml-8">
-                            <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-custom2">Industry<span className="pl-4 text-text-blue">{company.industryMain}</span></div>
-                            <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-custom2">Founded <span className="pl-4 text-text-blue">{company.founded}</span></div>
+                            <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-max">Industry<span className="pl-4 text-text-blue">{company.industryMain}</span></div>
+                            <div className="h-8 font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-max">Founded <span className="pl-4 text-text-blue">{company.founded}</span></div>
                         </div>
                         <div className="flex ml-8 mt-3 mr-48">
                                                 <div className="h-8 font-nunito font-normal text-morning-blue flex pl-2 pr-2 p-1 rounded-lg">City <span className="pl-4 text-text-blue">{company.city.name}</span></div>
