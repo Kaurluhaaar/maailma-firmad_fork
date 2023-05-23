@@ -7,15 +7,8 @@ export default {
   theme: {
 
     screens: {
-      'sm': '640px',
-
-      'tiny': '300px',
-
-      'smol': '1236px',
-
-      'mid': '1570px',
-
-      'big': '1728px',
+      'mid': '1000px',
+      'header': '670px',
     },
     extend: {
 

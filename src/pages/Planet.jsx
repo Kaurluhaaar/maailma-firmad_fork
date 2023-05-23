@@ -64,7 +64,7 @@ export default function Planet() {
         companyElement.scrollIntoView({ behavior: 'smooth' });
     };
     return <>
-        <div className="overflow-x-hidden">
+        <div className="">
             <div>
                 <Globe
                     animateIn="true"
