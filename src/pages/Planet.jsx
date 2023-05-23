@@ -105,7 +105,7 @@ export default function Planet() {
                                 tooltip.remove();
                             });
                         });
-                        el.onclick = (e) => handleLabelClick(el, d,);
+                        el.onclick = (e) => handleLabelClick(el, d);
                             return el;
                     }}
                 />
