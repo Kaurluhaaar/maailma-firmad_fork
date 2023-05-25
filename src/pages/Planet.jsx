@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Company from '../components/Company';
 import Globe from 'react-globe.gl';
 import { API } from "../../config/CompanyAPI";
+import autoprefixer from 'autoprefixer';
 
 export default function Planet() {
     const [places, setPlaces] = useState([]);
     const [selectedCompany, setSelectedCompany] = useState(null);
     const [selectedMarkerId, setSelectedMarkerId] = useState(null)
     const [isCompanyVisible, setCompanyVisible] = useState(false);
+    const [boxSize, setBoxSize] = useState({ width: 0, height: 0 });
 
     useEffect(() => {
         try {
@@ -28,7 +30,6 @@ export default function Planet() {
     </div>
     `;
 
-    //country
     const gData = places.map((company, index) => ({
         id: company.id,
         //page content data
@@ -63,10 +64,39 @@ export default function Planet() {
         const companyElement = document.getElementById('company-component');
         companyElement.scrollIntoView({ behavior: 'smooth' });
     };
+
+    useEffect(() => {
+        const handleResize = () => {
+          const windowWidth = window.innerWidth -50;
+          const windowHeight = window.innerHeight -50;
+
+          // Perform calculations to determine the desired box size
+          // For example:
+
+          // Update the box size state with the calculated dimensions
+          setBoxSize({ width: windowWidth, height: windowHeight });
+        };
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
+
+        // Call the handleResize function once to set the initial box size
+        handleResize();
+
+        // Clean up the event listener on component unmount
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, []);
+
+
     return <>
-        <div className="">
+        <div className="flex justify-center">
             <div>
                 <Globe
+                    hexMargin={autoprefixer}
+                    width={boxSize.width}
+                    height={boxSize.height}
                     animateIn="true"
                     backgroundColor="#080913"
                     globeImageUrl="/earthcolormap.png"
