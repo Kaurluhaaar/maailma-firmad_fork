@@ -9,7 +9,7 @@ const containerStyle = {
 function GoogleMaps({latitude, longitude}) {
     const center = {
         lat: latitude,
-        lng: longitude
+        lng: longitude,
       };
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -34,7 +34,7 @@ function GoogleMaps({latitude, longitude}) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={9}
+        zoom={16}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
