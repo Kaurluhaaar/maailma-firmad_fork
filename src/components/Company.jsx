@@ -26,7 +26,7 @@ function Company({ html, company }) {
                             <div className=" font-nunito font-normal text-morning-blue flex rounded-lg w-max h-max">Workers <span className="pl-4 text-text-blue">{company.workers}</span></div>
                         </div>
                     </div>
-                    <div className='h-[2px] mb-5 mt-5 w-full -rotate-180 bg-gradient-to-r from-space-blue via-text-blue-dark to-morning-blue'></div>
+                    <div className='h-[2px] my-2 w-full -rotate-180 bg-gradient-to-r from-space-blue via-text-blue-dark to-morning-blue'></div>
                 </div>
                 <div className="flex mt-10 mid:flex-row flex-col ">
                     <div className="mr-12 mid:w-1/2 w-full">

@@ -68,7 +68,7 @@ export default function Planet() {
     useEffect(() => {
         const handleResize = () => {
           const windowWidth = window.innerWidth -50;
-          const windowHeight = window.innerHeight -50;
+          const windowHeight = window.innerHeight -100;
 
           // Perform calculations to determine the desired box size
           // For example:
