@@ -11,7 +11,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<GetStarted />} />
                 <Route path="/Planet" element={<World />} />
-                <Route path="/maps" element={<GoogleMaps />} />
             </Routes>
         </BrowserRouter>
     </>

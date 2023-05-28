@@ -1,10 +1,16 @@
 {
+<<<<<<< HEAD
   "homepage": "http://ErikLeemet.github.io/maailma-firmad",
+=======
+"homepage": "https://erikleemet.github.io/maailma-firmad",
+>>>>>>> 8cbf63a3c4fcfe2572db11acd514cefb4ddbb91d
   "name": "maailma-firmad",
   "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

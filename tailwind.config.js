@@ -7,6 +7,8 @@ export default {
   theme: {
 
     screens: {
+      'normal': '600px',
+      'midgt': '1570px',
       'mid': '1000px',
       'header': '670px',
     },
