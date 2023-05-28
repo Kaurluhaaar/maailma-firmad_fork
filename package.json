@@ -1,7 +1,7 @@
 {
   "homepage": "http://ErikLeemet.github.io/maailma-firmad",
   "name": "maailma-firmad",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
