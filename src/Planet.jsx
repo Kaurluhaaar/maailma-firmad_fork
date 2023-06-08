@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Company from '../components/Company';
+import Company from './components/Company';
 import Globe from 'react-globe.gl';
-import { API } from "../../config/CompanyAPI";
+import { API } from "../config/CompanyAPI";
 import autoprefixer from 'autoprefixer';
 
 export default function Planet() {
