@@ -56,25 +56,28 @@ export default function Planet() {
         //activation for marker
         isSelected: selectedMarkerId === company.id, // Check if the company is selected
     }));
-    const handleLabelClick = (html, company) => {
+    const handleLabelClick = async (html, company) => {
         setSelectedCompany({ company: company, html: html });
         setSelectedMarkerId(company.id);
         setCompanyVisible(true);
-        // Scroll to the Company component
+
+        // Scroll to the Company component after setting the state and rendering the component
+        await new Promise((resolve) => setTimeout(resolve, 0)); // Delay execution to allow rendering
+
         const companyElement = document.getElementById('company-component');
-        companyElement.scrollIntoView({ behavior: 'smooth' });
+        await companyElement.scrollIntoView({ behavior: 'smooth' });
     };
 
     useEffect(() => {
         const handleResize = () => {
-          const windowWidth = window.innerWidth -50;
-          const windowHeight = window.innerHeight -100;
+            const windowWidth = window.innerWidth - 50;
+            const windowHeight = window.innerHeight - 100;
 
-          // Perform calculations to determine the desired box size
-          // For example:
+            // Perform calculations to determine the desired box size
+            // For example:
 
-          // Update the box size state with the calculated dimensions
-          setBoxSize({ width: windowWidth, height: windowHeight });
+            // Update the box size state with the calculated dimensions
+            setBoxSize({ width: windowWidth, height: windowHeight });
         };
 
         // Add event listener for window resize
@@ -85,9 +88,9 @@ export default function Planet() {
 
         // Clean up the event listener on component unmount
         return () => {
-          window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResize);
         };
-      }, []);
+    }, []);
 
 
     return <>
@@ -136,7 +139,7 @@ export default function Planet() {
                             });
                         });
                         el.onclick = (e) => handleLabelClick(el, d);
-                            return el;
+                        return el;
                     }}
                 />
                 {isCompanyVisible && (
