@@ -56,6 +56,7 @@ export default function Planet() {
         //activation for marker
         isSelected: selectedMarkerId === company.id, // Check if the company is selected
     }));
+
     const handleLabelClick = async (html, company) => {
         setSelectedCompany({ company: company, html: html });
         setSelectedMarkerId(company.id);
@@ -74,8 +75,6 @@ export default function Planet() {
             const windowHeight = window.innerHeight - 100;
 
             // Perform calculations to determine the desired box size
-            // For example:
-
             // Update the box size state with the calculated dimensions
             setBoxSize({ width: windowWidth, height: windowHeight });
         };
@@ -92,6 +91,7 @@ export default function Planet() {
         };
     }, []);
 
+    let tooltip;
 
     return <>
         <div className="flex justify-center">
@@ -111,33 +111,40 @@ export default function Planet() {
                         el.style['pointer-events'] = 'auto';
                         el.style.cursor = 'pointer';
                         el.style.color = d.isSelected ? d.color2 : d.color;
-                        // kasuta el et muuta colorit style.coloriga
                         el.addEventListener('mouseover', () => {
-                            // Create a tooltip element
-                            const tooltip = document.createElement('div');
+                            if (!tooltip) { // Check if tooltip already exists
+                              // Create a tooltip element
+                              tooltip = document.createElement('div');
+                              tooltip.style.position = 'absolute';
+                              tooltip.style.backgroundColor = '#101226';
+                              tooltip.style.color = '#5856B5';
+                              tooltip.style.padding = '10px';
+                              tooltip.style.border = '1px solid black';
+                              tooltip.style.borderRadius = '5px';
+                              tooltip.style.zIndex = '100';
+                            }
+
                             tooltip.innerText = d.name;
-                            tooltip.style.position = 'absolute';
                             tooltip.style.top = `${event.clientY}px`;
                             tooltip.style.left = `${event.clientX}px`;
-                            tooltip.style.backgroundColor = '#101226';
-                            tooltip.style.color = '#5856B5';
-                            tooltip.style.padding = '10px';
-                            tooltip.style.border = '1px solid black';
-                            tooltip.style.borderRadius = '5px';
-                            tooltip.style.zIndex = '100';
+                            tooltip.style.display = 'block';
 
                             // Add the tooltip to the document
                             document.body.appendChild(tooltip);
 
-                            // Remove the tooltip when the mouse moves out of the marker element
-                            el.addEventListener('mouseout', () => {
-                                tooltip.remove();
-                            });
                             // Remove the tooltip when the marker element is clicked
                             el.addEventListener('click', () => {
-                                tooltip.remove();
+                              tooltip.style.display = 'none';
                             });
-                        });
+                          });
+
+                          el.addEventListener('mouseout', () => {
+                            if (tooltip) {
+                            //   tooltip.style.display = 'none';
+                              tooltip.remove();
+                              tooltip = null; // Reset tooltip reference
+                            }
+                          });
                         el.onclick = (e) => handleLabelClick(el, d);
                         return el;
                     }}
