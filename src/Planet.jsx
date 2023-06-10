@@ -133,14 +133,14 @@ export default function Planet() {
                             document.body.appendChild(tooltip);
 
                             // Remove the tooltip when the marker element is clicked
-                            el.addEventListener('click', () => {
-                              tooltip.style.display = 'none';
-                            });
                           });
 
+                          el.addEventListener('click', () => {
+                            tooltip.remove();
+                          });
                           el.addEventListener('mouseout', () => {
                             if (tooltip) {
-                            //   tooltip.style.display = 'none';
+                              tooltip.style.display = 'none';
                               tooltip.remove();
                               tooltip = null; // Reset tooltip reference
                             }
