@@ -1,6 +1,6 @@
 import GoogleMaps from './GoogleMaps';
 
-function Company({ html, company }) {
+function Company({ company }) {
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,

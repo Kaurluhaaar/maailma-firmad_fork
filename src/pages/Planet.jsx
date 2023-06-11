@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Company from './components/Company';
+import Company from '../components/Company';
 import Globe from 'react-globe.gl';
-import { API } from "../config/CompanyAPI";
+import { API } from "../../config/CompanyAPI";
 import autoprefixer from 'autoprefixer';
+import Dropdown from '../components/Dropdown';
 
 export default function Planet() {
     const [places, setPlaces] = useState([]);
@@ -46,19 +47,15 @@ export default function Planet() {
         facebook: company.socialNetworks.facebook,
         linkedin: company.socialNetworks.linkedin,
         instagram: company.socialNetworks.instagram,
-        //loaction used for marker location
+        //loaction used for marker location and google maps
         lat: company.city.latitude,
         lng: company.city.longitude,
-        //styles
-        color: '#5856B5', // default marker color
-        color2: '#080913', //active marker color
-        size: 20, //default marker size
         //activation for marker
         isSelected: selectedMarkerId === company.id, // Check if the company is selected
     }));
 
-    const handleLabelClick = async (html, company) => {
-        setSelectedCompany({ company: company, html: html });
+    const handleLabelClick = async (company) => {
+        setSelectedCompany(company);
         setSelectedMarkerId(company.id);
         setCompanyVisible(true);
 
@@ -94,7 +91,8 @@ export default function Planet() {
     let tooltip;
 
     return <>
-        <div className="flex justify-center">
+    <Dropdown companies={gData} handleCompanyClick={handleLabelClick} />
+        <div className="flex justify-center z-negative">
             <div>
                 <Globe
                     hexMargin={autoprefixer}
@@ -107,21 +105,22 @@ export default function Planet() {
                     htmlElement={d => {
                         const el = document.createElement('div');
                         el.innerHTML = markerSvg;
-                        el.style.width = d.isSelected ? `30px` : `${d.size}px`;
+                        el.style.width = d.isSelected ? `30px` : `20px`;
+                        el.style.zIndex = '-10';
                         el.style['pointer-events'] = 'auto';
                         el.style.cursor = 'pointer';
-                        el.style.color = d.isSelected ? d.color2 : d.color;
+                        el.style.color = d.isSelected ? '#1e1cba' : '#5856B5';
                         el.addEventListener('mouseover', () => {
                             if (!tooltip) { // Check if tooltip already exists
-                              // Create a tooltip element
-                              tooltip = document.createElement('div');
-                              tooltip.style.position = 'absolute';
-                              tooltip.style.backgroundColor = '#101226';
-                              tooltip.style.color = '#5856B5';
-                              tooltip.style.padding = '10px';
-                              tooltip.style.border = '1px solid black';
-                              tooltip.style.borderRadius = '5px';
-                              tooltip.style.zIndex = '100';
+                                // Create a tooltip element
+                                tooltip = document.createElement('div');
+                                tooltip.style.position = 'absolute';
+                                tooltip.style.backgroundColor = '#101226';
+                                tooltip.style.color = '#5856B5';
+                                tooltip.style.padding = '10px';
+                                tooltip.style.border = '1px solid black';
+                                tooltip.style.borderRadius = '5px';
+                                tooltip.style.zIndex = '100';
                             }
 
                             tooltip.innerText = d.name;
@@ -133,25 +132,25 @@ export default function Planet() {
                             document.body.appendChild(tooltip);
 
                             // Remove the tooltip when the marker element is clicked
-                          });
+                        });
 
-                          el.addEventListener('click', () => {
+                        el.addEventListener('click', () => {
                             tooltip.remove();
-                          });
-                          el.addEventListener('mouseout', () => {
+                        });
+                        el.addEventListener('mouseout', () => {
                             if (tooltip) {
-                              tooltip.style.display = 'none';
-                              tooltip.remove();
-                              tooltip = null; // Reset tooltip reference
+                                tooltip.style.display = 'none';
+                                tooltip.remove();
+                                tooltip = null; // Reset tooltip reference
                             }
-                          });
-                        el.onclick = (e) => handleLabelClick(el, d);
+                        });
+                        el.onclick = (e) => handleLabelClick(d);
                         return el;
                     }}
                 />
                 {isCompanyVisible && (
                     <div id="company-component">
-                        <Company html={selectedCompany.html} company={selectedCompany.company} />
+                        <Company company={selectedCompany} />
                     </div>
                 )}
             </div>

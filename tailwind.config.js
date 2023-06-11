@@ -41,5 +41,13 @@ export default {
       'earth': "url('/images/earth.png')",
     }},
   },
+  variants: {
+    display: ["group-hover"]
+  },
+  zIndex: {
+    'auto': 'auto',
+    'negative': -1,
+    '0': 0,
+  },
   plugins: [],
 }
