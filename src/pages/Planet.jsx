@@ -92,7 +92,7 @@ export default function Planet() {
 
     return <>
     <Dropdown companies={gData} handleCompanyClick={handleLabelClick} />
-        <div className="flex justify-center z-negative">
+        <div className="flex justify-center z-0">
             <div>
                 <Globe
                     hexMargin={autoprefixer}

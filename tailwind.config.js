@@ -17,14 +17,15 @@ export default {
       width: {
         '128': '30rem',
         '200': '700px',
+        '300':'1500px',
         'custom1': '2px',
         'custom2':'250px',
-        '300':'1500px',
         'imageheight':'370px',
         'imagewidth':'570px',
-
       },
-
+      height: {
+        '600': '50rem',
+      },
       colors: {
       'morning-blue': '#5856B5',
       'space-blue': '#080913',
@@ -41,13 +42,6 @@ export default {
       'earth': "url('/images/earth.png')",
     }},
   },
-  variants: {
-    display: ["group-hover"]
-  },
-  zIndex: {
-    'auto': 'auto',
-    'negative': -1,
-    '0': 0,
-  },
+
   plugins: [],
 }
