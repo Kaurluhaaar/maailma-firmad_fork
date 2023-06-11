@@ -8,7 +8,7 @@ export default function Dropdown({ companies, handleCompanyClick }) {
   };
 
   return (
-    <div className="absolute top-0 left-10 flex flex-col items-center mt-8 z-50">
+    <div className="absolute top-10 left-10 flex flex-col items-center z-50">
       <div className="relative">
         <button
           onClick={toggleDropdown}

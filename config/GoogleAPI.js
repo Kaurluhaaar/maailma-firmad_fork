@@ -1,7 +1,5 @@
 import axios from "axios";
 
-console.log(import.meta.env)
-
 export const API = axios.create({
     baseURL: import.meta.env.VITE_X_GOOGLE_BASE_URL,
     headers: {

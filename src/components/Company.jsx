@@ -1,6 +1,32 @@
+import React, { useState } from 'react';
 import GoogleMaps from './GoogleMaps';
+import { API } from "../../config/TranslateAPI";
 
 function Company({ company }) {
+    const [language, setLanguage] = useState(null);
+    const [translation, setTranslation] = useState(null);
+    const [translated, setTranslated] = useState(null);
+
+    try {
+        API.post("/detect", { q: company.description }).then((response) => {
+            // Handle the response data
+            response.data.map((res) => (
+                setLanguage(res.language)
+            ))
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
+    try {
+        API.post("/translate", { q: company.description, source: language, target: translation }).then((response) => {
+            // Handle the response data
+            setTranslated(response.data.translatedText)
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -12,18 +38,45 @@ function Company({ company }) {
         lng: Number(company.lng)
     };
 
+    const handleTranslation = (lang) => {
+        setTranslation(lang);
+    };
+
     return (
         <>
             <div className=" px-10 h-screen flex flex-col mid:justify-center">
                 <div>
-                    <div className='flex mid:flex-row mid:items-end flex-col'>
-                        <a href={`https://${company.domain}`} className="flex">
-                            <img src={company.logo} alt="logo" className="w-12 h-12 rounded" />
-                            <div className="text-morning-blue font-nunito text-5xl font-light ml-8 mr-10 transition duration-300 ease-in-out hover:scale-110 ">{company.name}</div>
-                        </a>
-                        <div className=' flex h-max items-center'>
-                            <div className=" font-nunito font-normal text-morning-blue flex mr-5 rounded-lg w-max h-max">revenue <span className="pl-4 text-text-blue">{company.revenue}</span></div>
-                            <div className=" font-nunito font-normal text-morning-blue flex rounded-lg w-max h-max">Workers <span className="pl-4 text-text-blue">{company.workers}</span></div>
+                    <div className='flex mid:flex-row mid:items-end flex-col justify-between'>
+                        <div>
+                            <a href={`https://${company.domain}`} className="flex">
+                                <img src={company.logo} alt="logo" className="w-12 h-12 rounded" />
+                                <div className="text-morning-blue font-nunito xsm:text-5xl text-3xl font-light ml-8 mr-10 transition duration-300 ease-in-out hover:scale-110">{company.name}</div>
+                            </a>
+                            <div className=' flex h-max items-center'>
+                                <div className=" font-nunito font-normal text-morning-blue flex mr-5 rounded-lg w-max h-max">revenue <span className="pl-4 text-text-blue">{company.revenue}</span></div>
+                                <div className=" font-nunito font-normal text-morning-blue flex rounded-lg w-max h-max">Workers <span className="pl-4 text-text-blue">{company.workers}</span></div>
+                            </div>
+                        </div>
+                        <div className="flex justify-center space-x-4 mt-4">
+                            <span className="text-morning-blue flex self-center">language</span>
+                            <button
+                                className={`p-2 rounded-md ${translation === 'en' ? 'bg-morning-blue' : 'bg-blue-box'}`}
+                                onClick={() => handleTranslation('en')}
+                            >
+                                <span className={`text-white ${translation === 'en' ? 'font-bold' : ''}`}>English</span>
+                            </button>
+                            <button
+                                className={`p-2 rounded-md ${translation === 'ar' ? 'bg-morning-blue' : 'bg-blue-box'}`}
+                                onClick={() => handleTranslation('ar')}
+                            >
+                                <span className={`text-white ${translation === 'ar' ? 'font-bold' : ''}`}>Arabic</span>
+                            </button>
+                            <button
+                                className={`p-2 rounded-md ${translation === 'ja' ? 'bg-morning-blue' : 'bg-blue-box'}`}
+                                onClick={() => handleTranslation('ja')}
+                            >
+                                <span className={`text-white ${translation === 'ja' ? 'font-bold' : ''}`}>Japanese</span>
+                            </button>
                         </div>
                     </div>
                     <div className='h-[2px] my-2 w-full -rotate-180 bg-gradient-to-r from-space-blue via-text-blue-dark to-morning-blue'></div>
@@ -34,8 +87,8 @@ function Company({ company }) {
                             <div className="h-max font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-max">Founded <span className="pl-4 text-text-blue">{company.founded}</span></div>
                             <div className="h-max font-nunito font-normal bg-button-blue text-morning-blue flex pl-2 pr-2 p-1 rounded-lg w-max">Industry<span className="pl-4 text-text-blue">{company.industryMain}</span></div>
                         </div>
-                        <div className="flex my-6">
-                            <div className="text-text-blue h-80 mt-5 pr-8 mb-16 overflow-y-auto ">{company.description}</div>
+                        <div className="flex mb-6">
+                            <div className="text-text-blue h-96 mt-5 pr-8 overflow-y-auto ">{!translated ? company.description : translated}</div>
                             <div className="w-4 h-100 bg-gradient-to-b from-morning-blue to-space-blue"></div>
                         </div>
                         <div className="flex gap-3 mid:pr-16 mb-4 mid:justify-end justify-center">
