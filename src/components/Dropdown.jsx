@@ -24,7 +24,7 @@ export default function Dropdown({ companies, handleCompanyClick }) {
               <li
                 key={company.id}
                 className="flex gap-4 transition ease-in-out duration-500 py-2 w-full h-full px-4 cursor-pointer text-morning-blue hover:bg-morning-blue hover:text-button-blue"
-                onClick={() => handleCompanyClick(company) || setDropdownOpen(false)}
+                onClick={() => handleCompanyClick(company)}
               >
                 <img src={company.logo} alt="logo" className="w-6 h-6 rounded" />
                 {company.name}
